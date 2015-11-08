@@ -1,14 +1,11 @@
 #!/bin/bash -e
-# This script is used to build, test and squash the OpenShift Docker images.
+# This script is used to build and squash the OpenShift Docker images.
 #
 # Name of resulting image will be: 'NAMESPACE/BASE_IMAGE_NAME-VERSION-OS'.
 #
 # BASE_IMAGE_NAME - Usually name of the main component within container.
 # OS - Specifies distribution - "rhel7" or "centos7"
 # VERSION - Specifies the image version - (must match with subdirectory in repo)
-# TEST_MODE - If set, build a candidate image and test it
-# TAG_ON_SUCCESS - If set, tested image will be re-tagged as a non-candidate
-#       image, if the tests pass.
 # VERSIONS - Must be set to a list with possible versions (subdirectories)
 # OPENSHIFT_NAMESPACES - Which of available versions (subdirectories) should be
 #       put into openshift/ namespace.
@@ -70,10 +67,6 @@ for dir in ${dirs}; do
 
   IMAGE_NAME="${NAMESPACE}${BASE_IMAGE_NAME}-${dir//./}-${OS}"
 
-  if [[ -v TEST_MODE ]]; then
-    IMAGE_NAME+="-candidate"
-  fi
-
   echo "-> Building ${IMAGE_NAME} ..."
 
   pushd ${dir} > /dev/null
@@ -81,15 +74,6 @@ for dir in ${dirs}; do
     docker_build_with_version Dockerfile.rhel7
   else
     docker_build_with_version Dockerfile
-  fi
-
-  if [[ -v TEST_MODE ]]; then
-    IMAGE_NAME=${IMAGE_NAME} test/run
-
-    if [[ $? -eq 0 ]] && [[ "${TAG_ON_SUCCESS}" == "true" ]]; then
-      echo "-> Re-tagging ${IMAGE_NAME} image to ${IMAGE_NAME%"-candidate"}"
-      docker tag -f $IMAGE_NAME ${IMAGE_NAME%"-candidate"}
-    fi
   fi
 
   popd > /dev/null
