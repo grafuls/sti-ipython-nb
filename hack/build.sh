@@ -47,7 +47,8 @@ function squash {
   #        compatibility issues
   easy_install -q --user docker_py==1.2.3 docker-scripts==0.4.2
   base=$(awk '/^FROM/{print $2}' $1)
-  ${HOME}/.local/bin/docker-scripts squash -f $base ${IMAGE_NAME}
+  #${HOME}/.local/bin/docker-scripts squash -f $base ${IMAGE_NAME}
+  python ${HOME}/Library/Python/2.7/lib/python/site-packages/docker_scripts/squash.py -f $base ${IMAGE_NAME}
 }
 
 # Versions are stored in subdirectories. You can specify VERSION variable
