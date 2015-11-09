@@ -5,8 +5,10 @@ set -e
 
 echo "Starting iPython Notebook"
 
-nohup ipython notebook --no-browser --debug --notebook-dir=$OPENSHIFT_DATA_DIR/notebooks \
-  --keyfile=$OPENSHIFT_DATA_DIR/mycert.pem >> $OPENSHIFT_LOG_DIR/notebook.log 2>&1 &
+mkdir -p /opt/app-root/notebooks
+
+nohup ipython notebook --no-browser --debug --notebook-dir=/opt/app-root/notebooks \
+  --certfile=/opt/app-root/mycert.pem >> /opt/app-root/notebook.log 2>&1 &
 
 >&2 echo "ERROR: don't know how to run your application."
 >&2 echo "Please set either APP_MODULE or APP_FILE environment variables, or create a file 'app.py' to launch your application."

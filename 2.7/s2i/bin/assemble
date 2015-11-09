@@ -5,8 +5,11 @@ set -e
 echo "---> Copying application source ..."
 cp -Rf /tmp/src/. ./
 
+echo "---> Installing yum dependencies ..."
+yum install -y --setopt=tsflags=nodocs install openssl cppzmq-devel czmq-devel python-zmq
+
 if [[ -f requirements.txt ]]; then
-  echo "---> Installing dependencies ..."
+  echo "---> Installing python dependencies ..."
   pip install --user -r requirements.txt
 fi
 
@@ -24,7 +27,7 @@ organizationalunit=IT
 commonname=pandevs
 email=grafuls@gmail.com
 
-openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout ./mycert.pem -out ./mycert.pem \
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /opt/app-root/mycert.pem -out /opt/app-root/mycert.pem \
              -subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
 
 # Fix source directory permissions

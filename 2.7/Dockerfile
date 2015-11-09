@@ -19,7 +19,6 @@ RUN yum install -y \
     https://www.softwarecollections.org/en/scls/rhscl/python27/epel-7-x86_64/download/rhscl-python27-epel-7-x86_64.noarch.rpm && \
     yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus python27 python27-python-devel python27-python-setuptools python27-python-pip epel-release && \
     yum install -y --setopt=tsflags=nodocs install nss_wrapper && \
-    yum install -y --setopt=tsflags=nodocs install openssl cppzmq-devel czmq-devel python-zmq && \
     yum clean all -y
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
