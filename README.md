@@ -1,4 +1,4 @@
-iPython Notebook Docker images (WORK IN PROGRESS)
+iPython Notebook Docker images
 ====================
 
 Based on the [sti-python](https://github.com/openshift/sti-python) repo,
