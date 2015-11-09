@@ -10,8 +10,8 @@ The resulting image can be run using [Docker](http://docker.io).
 
 Usage
 ---------------------
-To build a simple [python-sample-app](https://github.com/openshift/sti-python/tree/master/2.7/test/setup-test-app) application
-using standalone [S2I](https://github.com/openshift/source-to-image) and then run the
+To build the iPython Notebook application using standalone 
+[S2I](https://github.com/openshift/source-to-image) and then run the
 resulting image with [Docker](http://docker.io) execute:
 
 *  **For RHEL based image**
