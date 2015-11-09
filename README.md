@@ -23,7 +23,7 @@ CentOS versions currently supported are:
 
 Installation
 ---------------
-To build a Python image, choose either the CentOS or RHEL based image:
+To build a iPython Notebook image, choose either the CentOS or RHEL based image:
 *  **RHEL based image**
 
     To build a RHEL based Python image, you need to run the build on a properly
@@ -31,28 +31,25 @@ To build a Python image, choose either the CentOS or RHEL based image:
 
     ```
     $ git clone https://github.com/grafuls/sti-ipython-nb.git
-    $ cd sti-python
+    $ cd sti-ipython-nb
     $ make build TARGET=rhel7
     ```
 
 *  **CentOS based image**
 
-    To build a Python image from scratch run:
+    To build a iPython image from scratch run:
 
     ```
     $ git clone https://github.com/grafuls/sti-ipython-nb.git
-    $ cd sti-python
+    $ cd sti-ipython-nb
     $ make build
     ```
-
-**Notice: By omitting the `VERSION` parameter, the build/test action will be performed
-on all provided versions of Python.**
 
 
 Usage
 ---------------------------------
 
-For information about usage of Dockerfile for Python 2.7,
+For information about usage of Dockerfile for iPython,
 see [usage documentation](2.7/README.md).
 
 
@@ -75,5 +72,5 @@ Image name structure
 2. Platform version(without dots) - 27
 3. Base builder image - centos7/rhel7
 
-Examples: `openshift/ipython-27-centos7`, `openshift/python-27-rhel7`
+Examples: `openshift/ipython-27-centos7`, `openshift/ipython-27-rhel7`
 
