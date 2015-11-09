@@ -5,9 +5,6 @@ set -e
 echo "---> Copying application source ..."
 cp -Rf /tmp/src/. ./
 
-echo "---> Installing yum dependencies ..."
-yum install -y --setopt=tsflags=nodocs install openssl cppzmq-devel czmq-devel python-zmq
-
 if [[ -f requirements.txt ]]; then
   echo "---> Installing python dependencies ..."
   pip install --user -r requirements.txt
@@ -17,6 +14,9 @@ if [[ -f setup.py ]]; then
   echo "---> Installing application ..."
   python setup.py develop --user
 fi
+
+echo "---> Creating notebooks dir ..."
+mkdir /opt/app-root/notebooks
 
 echo "---> Creating ssl certificate ..."
 country=CZ

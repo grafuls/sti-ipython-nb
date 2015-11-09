@@ -5,10 +5,8 @@ set -e
 
 echo "Starting iPython Notebook"
 
-mkdir -p /opt/app-root/notebooks
-
-nohup ipython notebook --no-browser --debug --notebook-dir=/opt/app-root/notebooks \
-  --certfile=/opt/app-root/mycert.pem >> /opt/app-root/notebook.log 2>&1 &
+ipython notebook --no-browser --debug --notebook-dir=/opt/app-root/notebooks \
+  --certfile=/opt/app-root/mycert.pem --port=8888
 
 >&2 echo "ERROR: don't know how to run your application."
 >&2 echo "Please set either APP_MODULE or APP_FILE environment variables, or create a file 'app.py' to launch your application."

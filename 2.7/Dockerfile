@@ -5,19 +5,20 @@ FROM openshift/base-centos7
 
 MAINTAINER SoftwareCollections.org <sclorg@redhat.com>
 
-EXPOSE 8080
+EXPOSE 8888 8443
 
 ENV PYTHON_VERSION=2.7 \
     PATH=$HOME/.local/bin/:$PATH
 
-LABEL io.k8s.description="Platform for building and running Python 2.7 applications" \
-      io.k8s.display-name="Python 2.7" \
-      io.openshift.expose-services="8080:http" \
+LABEL io.k8s.description="Platform for building and running iPython notebook" \
+      io.k8s.display-name="iPython Notebook" \
+      io.openshift.expose-services="8888:http,8443:https" \
       io.openshift.tags="builder,python,python27,rh-python27"
 
 RUN yum install -y \
     https://www.softwarecollections.org/en/scls/rhscl/python27/epel-7-x86_64/download/rhscl-python27-epel-7-x86_64.noarch.rpm && \
     yum install -y --setopt=tsflags=nodocs --enablerepo=centosplus python27 python27-python-devel python27-python-setuptools python27-python-pip epel-release && \
+    yum install -y --setopt=tsflags=nodocs install openssl czmq-devel python-zmq && \
     yum install -y --setopt=tsflags=nodocs install nss_wrapper && \
     yum clean all -y
 
