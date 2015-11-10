@@ -1,8 +1,9 @@
-Python Docker image
+iPython Notebook Docker image
 ===================
 
-This repository contains the source for building various versions of
-the Python application as a reproducible Docker image using
+Based on the [sti-python](https://github.com/openshift/sti-python) repo,
+this repository contains the source for building the iPython 
+Notebook application as a reproducible Docker image using
 [source-to-image](https://github.com/openshift/source-to-image).
 Users can choose between RHEL and CentOS based builder images.
 The resulting image can be run using [Docker](http://docker.io).
