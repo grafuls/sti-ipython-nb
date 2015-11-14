@@ -74,3 +74,7 @@ Image name structure
 
 Examples: `openshift/ipython-27-centos7`, `openshift/ipython-27-rhel7`
 
+TODO
+---------------------------------
+* Permanent notebook storage
+* use [tini](https://github.com/krallin/tini)
